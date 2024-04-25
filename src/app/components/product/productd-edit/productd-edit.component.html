@@ -1,0 +1,77 @@
+<div class="card shadow rounded-5 p-5">
+  <h2 class="mb-3">{{ prodId == 0 ? "Add Product" : "Edit Product" }}</h2>
+  <form [formGroup]="productForm" (submit)="prodOperation()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Product Name</label>
+      <input
+        id="name"
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        formControlName="name"
+        [ngClass]="{ 'input-error': name.errors && name.touched }"
+      />
+      <ng-container *ngIf="name.touched">
+        <p *ngIf="name.hasError('required')" class="text-danger">
+          Name is required *
+        </p>
+        <p *ngIf="name.hasError('minlength')" class="text-danger">
+          Minimum length must be 6 chars
+        </p>
+        <p *ngIf="name.hasError('maxlength')" class="text-danger">
+          Maximum length must be 20 chars
+        </p>
+      </ng-container>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Product Price</label>
+      <input
+        id="price"
+        type="number"
+        class="form-control"
+        id="name"
+        name="price"
+        formControlName="price"
+        [ngClass]="{ 'input-error': price.errors && price.touched }"
+      />
+      <ng-container *ngIf="price.touched"
+        ><p *ngIf="price.hasError('required')" class="text-danger">
+          Price is required *
+        </p>
+        <p *ngIf="price.hasError('min')" class="text-danger">
+          Minimum price value must be $1
+        </p>
+        <p *ngIf="price.hasError('min')" class="text-danger">
+          Maximum price value must be $9999
+        </p></ng-container
+      >
+    </div>
+    <div class="mb-3">
+      <label for="qty" class="form-label">Product Quantity</label>
+      <input
+        id="qty"
+        type="number"
+        class="form-control"
+        id="name"
+        name="quantity"
+        formControlName="quantity"
+        [ngClass]="{ 'input-error': quantity.errors && quantity.touched }"
+      />
+      <ng-container *ngIf="quantity.touched">
+        <p *ngIf="price.hasError('required')" class="text-danger">
+          Quantity is required *
+        </p>
+        <p *ngIf="price.hasError('min')" class="text-danger">
+          Minimum quantity value must be 6
+        </p>
+        <p *ngIf="price.hasError('min')" class="text-danger">
+          Maximum quantity value must be 9999
+        </p></ng-container
+      >
+    </div>
+    <button type="submit" class="btn btn-primary">
+      {{ prodId == 0 ? "Add" : "Edit" }}
+    </button>
+  </form>
+</div>
